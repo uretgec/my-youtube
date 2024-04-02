@@ -34,7 +34,7 @@ Go to [My Youtube](https://addons.mozilla.org/en-US/firefox/addon/-----/) Firefo
 
 ### Usage
 
-Nothing
+Nothing...
 
 ## Licence
 
