@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "My Youtube - DEVELOPMENT BUILD",
+    "short_name": "My YT",
+    "description": "THIS EXTENSION IS FOR BETA TESTING",
+    "version": "BUILD_NUMBER",
+    "homepage_url": "https://github.com/uretgec/my-youtube",
+    "icons": { 
+        "16": "icons/16.png",   
+        "32": "icons/32.png",
+        "128": "icons/128.png" 
+    },
+    "author": "Uretgec",
+    "offline_enabled": false,
+    "content_scripts": [
+        {
+          "matches": ["*://www.youtube.com/watch*"],
+          "js": ["contentScript.js"],
+          "run_at": "document_end"
+        }
+    ]
+  }
