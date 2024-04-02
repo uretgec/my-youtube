@@ -1,6 +1,6 @@
 # My Youtube Browser Extension
 
-Auto Wait&Click Browser Extension for Youtube Ads
+Auto Wait&Click Browser Extension for Youtube Video Ads
 
 ## Feature
 
@@ -30,7 +30,7 @@ Go to [My Youtube](https://addons.mozilla.org/en-US/firefox/addon/-----/) Firefo
 3. Click: "Load unpacked extension"
 4. Select: "extension" directory
 5. Ready to use
-6. Go to producthunt website
+6. Go to youtube website
 
 ### Usage
 
