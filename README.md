@@ -17,9 +17,9 @@ Auto Wait&Click Browser Extension for Youtube Video Ads
 
 ### Chrome Store/Firefox Add-Ons
 
-Go to [My Youtube](https://chrome.google.com/webstore/detail/----) Chrome Store Page
+Go to [My Youtube](https://chrome.google.com/webstore/detail/eoopcffhedpnjmahfloddmbidpacjnml) Chrome Store Page
 
-Go to [My Youtube](https://addons.mozilla.org/en-US/firefox/addon/-----/) Firefox Add-Ons Page
+Go to [My Youtube](https://addons.mozilla.org/en-US/firefox/addon/my-youtube/) Firefox Add-Ons Page
 
 ### Local Development
 
