@@ -2,6 +2,7 @@
 
 // debug
 const debugMode = false
+if (debugMode) console.debug("DEBUGMYYT", "Debug mode is live.")
 
 // tracking variables
 let observerActive = false
@@ -20,22 +21,24 @@ const config = {
 // observer calback func
 const callback = (mutations, obs) => {  
     mutations.forEach(mutation => {
-        if (debugMode) console.debug("Mutation:", mutation)
+        if (debugMode) console.debug("DEBUGMYYT", "Mutation:", mutation, mutation.target.textContent)
 
         if(mutation.oldValue == "display: none;") {
-            if (debugMode) console.debug("Skip button is visible.", mutation.target.textContent)
+            if (debugMode) console.debug("DEBUGMYYT", "Skip button is visible.", mutation.target.textContent)
 
             setTimeout(() => {
                 // wait and click ads skip button
                 mutation.target.click()
 
                 // stop observer
-                obs.disconnect()
+                // NOTE: No need to disconnect after every click action. 
+                // via: https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver/observe
+                // obs.disconnect()
 
                 // stop current process
                 observerActive = false
 
-                if (debugMode) console.debug("Skip button clicked and process stopped.")
+                if (debugMode) console.debug("DEBUGMYYT", "Skip button clicked and process stopped.")
             }, 250)
         }
     })
@@ -54,7 +57,7 @@ setInterval(() => {
 
     // check ads video ready to skip
     if (!!adPlaying && !!countTime) {
-        if (debugMode) console.debug("Ads Name:", adPlaying.getAttribute("aria-label"), "Count Time:", countTime[0].textContent)
+        if (debugMode) console.debug("DEBUGMYYT", "Ads Name:", adPlaying.getAttribute("aria-label"), "Count Time:", countTime[0].textContent)
     }
 
     // skip button after a long timeeeees waiting (5 seconds)
@@ -67,6 +70,9 @@ setInterval(() => {
         // start current process
         observerActive = true
 
-        if (debugMode) console.debug("Observer activated", targetNode)
+        if (debugMode) console.debug("DEBUGMYYT", "Observer activated", targetNode)
     }
+
+    if (debugMode) console.debug("DEBUGMYYT", "Result:", targetNode?.parentElement, observerActive)
+
 }, defaultInt)
