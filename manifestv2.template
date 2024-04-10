@@ -13,9 +13,9 @@
     "author": "Uretgec",
     "content_scripts": [
         {
-          "matches": ["*://www.youtube.com/watch*"],
+          "matches": ["*://www.youtube.com/*"],
           "js": ["contentScript.js"],
-          "run_at": "document_end"
+          "run_at": "document_start"
         }
     ]
   }
