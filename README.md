@@ -6,6 +6,7 @@ Auto Wait&Click Browser Extension for Youtube Video Ads
 
 - It waits until the skip ad button appears and clicks it automatically.
 - It allows you to watch YouTube videos without getting nervous.
+- Auto clicks confirmation button when video paused and popup appears
 
 ## Compatibility
 
