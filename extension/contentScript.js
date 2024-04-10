@@ -1,7 +1,7 @@
 "use strict";
 
 // debug
-const debugMode = true
+const debugMode = false
 if (debugMode) console.debug("DEBUGMYYT", "Debug mode is live.")
 
 // tracking variables
@@ -9,6 +9,16 @@ const defaultInt = 1500
 
 // main loop: follow skip button only
 setInterval(() => {
+    // video pause confirmation popup
+    let pauseConfirmationPopup = document.getElementById("confirm-button")
+
+    // check button is here and click the "Yes" button
+    if (!!pauseConfirmationPopup) {
+        pauseConfirmationPopup.querySelector("button")?.click()
+
+        if (debugMode) console.debug("DEBUGMYYT", "Confirmation button clicked.")
+    }
+
     // ads video is playing right now
     let adPlaying = document.querySelector(".ytp-ad-visit-advertiser-button")
 
