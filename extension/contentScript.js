@@ -22,6 +22,18 @@ const convertSeconds = function(currentDuration) {
         seconds.toString().padStart(2, '0')
 }
 
+// queryselectoroneof method
+const querySelectorOneOf = function(...selectorArgs) {
+    let selectors = document.querySelectorAll(selectorArgs.join(","))
+
+    let element = null
+    for (const selector of selectors) {
+        if (!!selector) element = selector
+    }
+
+    return element
+}
+
 // main loop: follow skip button only
 setInterval(() => {
     // video pause confirmation popup
@@ -35,7 +47,7 @@ setInterval(() => {
     }
 
     // ads video is playing right now
-    let adPlaying = document.querySelector(".ytp-ad-visit-advertiser-button")
+    let adPlaying = querySelectorOneOf(".ytp-visit-advertiser-link.ytp-ad-component--clickable", ".ytp-ad-visit-advertiser-button")
 
     // ads video is a counter or video plays soon
     let countTime = document.getElementsByClassName("ytp-ad-text ytp-ad-preview-text-modern")
@@ -89,7 +101,7 @@ setInterval(() => {
     }
 
     // skip button after a long timeeeees waiting (5 seconds)
-    let targetNode = document.querySelector(".ytp-ad-skip-button-modern.ytp-button")
+    let targetNode = querySelectorOneOf(".ytp-skip-ad-button",".ytp-ad-skip-button-modern.ytp-button")
     if (
         !!targetNode 
         && !!targetNode?.parentElement 
