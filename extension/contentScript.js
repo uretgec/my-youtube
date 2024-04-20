@@ -50,7 +50,7 @@ setInterval(() => {
     let adPlaying = querySelectorOneOf(".ytp-visit-advertiser-link.ytp-ad-component--clickable", ".ytp-ad-visit-advertiser-button")
 
     // ads video is a counter or video plays soon
-    let countTime = document.getElementsByClassName("ytp-ad-text ytp-ad-preview-text-modern")
+    let countTime = querySelectorOneOf(".ytp-ad-text.ytp-ad-preview-text-modern", ".ytp-skip-ad-button") 
 
     // video progress bar
     let moviePlayer = document.getElementsByClassName('video-stream')
@@ -60,7 +60,7 @@ setInterval(() => {
     if (!!moviePlayer) {
         let playerCurrentTime = Math.floor(moviePlayer[0].currentTime)
         let videoTotalTime = parseInt(progressBar?.getAttribute("aria-valuemax"))
-        videoTotalTime = videoTotalTime - 3
+        videoTotalTime = Math.max(1, videoTotalTime - 3)
 
         if (
             videoStatus == 0
@@ -89,7 +89,7 @@ setInterval(() => {
 
     // check ads video ready to skip
     if (!!adPlaying && !!countTime) {
-        if (debugMode) console.debug("DEBUGMYYT", "Ads Name:", adPlaying.getAttribute("aria-label"), "Count Time:", countTime[0].textContent)
+        if (debugMode) console.debug("DEBUGMYYT", "Ads Name:", adPlaying.getAttribute("aria-label"), "Count Time:", countTime.textContent)
 
         if (!!progressBar) {
             if (debugMode) console.debug("DEBUGMYYT", "Progress Bar:", progressBar?.getAttribute("aria-valuemin"), " - ", progressBar?.getAttribute("aria-valuenow"), " - ", progressBar?.getAttribute("aria-valuemax"))
@@ -102,24 +102,40 @@ setInterval(() => {
 
     // skip button after a long timeeeees waiting (5 seconds)
     let targetNode = querySelectorOneOf(".ytp-skip-ad-button",".ytp-ad-skip-button-modern.ytp-button")
-    if (
-        !!targetNode 
-        && !!targetNode?.parentElement 
-        && (targetNode.parentElement.getAttribute("style") != "display: none;" || videoStatus == 2)
-        && location.pathname === "/watch"
-    ) {
+    if (!!targetNode && location.pathname === "/watch") {
 
-        setTimeout(() => {
-            // wait and click ads skip button
-            targetNode.click()
+        // find which skip adsbutton appears
+        let oldStyleTargetNode = targetNode.classList.contains("ytp-skip-ad-button")
 
-            // reset video status
-            videoStatus = 0
+        // check ads skip or not
+        let autoSkipAds = false
+        if (videoStatus == 2) {
+            autoSkipAds = true
 
-            if (debugMode) console.debug("DEBUGMYYT", "Skip button clicked and process stopped.", "Video Status:", videoStatus)
-        }, 100)
+            if (debugMode) console.debug("DEBUGMYYT", "AutoSkipAds detected.", "VideoStatus")
+        } else if (oldStyleTargetNode && targetNode.getAttribute("style") != "display: none;") {
+            autoSkipAds = true
 
-        if (debugMode) console.debug("DEBUGMYYT", "Target Ads Node", targetNode)
+            if (debugMode) console.debug("DEBUGMYYT", "AutoSkipAds detected.", "OldStyleTargetNode")
+        } else if (!oldStyleTargetNode && !!targetNode?.parentElement && targetNode.parentElement.getAttribute("style") != "display: none;") {
+            autoSkipAds = true
+
+            if (debugMode) console.debug("DEBUGMYYT", "AutoSkipAds detected.", "TargetNodeParentElement")
+        }
+
+        if (autoSkipAds) {
+            setTimeout(() => {
+                // wait and click ads skip button
+                targetNode.click()
+    
+                // reset video status
+                videoStatus = 0
+    
+                if (debugMode) console.debug("DEBUGMYYT", "Skip button clicked and process stopped.", "Video Status:", videoStatus)
+            }, 100)
+
+            if (debugMode) console.debug("DEBUGMYYT", "Target Ads Node", targetNode)
+        }
     }
 
     if (debugMode) console.debug("DEBUGMYYT", "Result:", targetNode?.parentElement, "Video Status:", videoStatus)
