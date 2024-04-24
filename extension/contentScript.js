@@ -57,7 +57,7 @@ setInterval(() => {
     let progressBar = document.querySelector(".ytp-progress-bar")
 
     // check video data
-    if (!!moviePlayer) {
+    if (!!moviePlayer && moviePlayer.length > 0) {
         let playerCurrentTime = Math.floor(moviePlayer[0].currentTime)
         let videoTotalTime = parseInt(progressBar?.getAttribute("aria-valuemax"))
         videoTotalTime = Math.max(1, videoTotalTime - 3)
