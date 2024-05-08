@@ -36,15 +36,16 @@ const querySelectorOneOf = function(...selectorArgs) {
 
 // main loop: follow skip button only
 setInterval(() => {
-    // video pause confirmation popup
-    let pauseConfirmationPopup = document.getElementById("confirm-button")
+    // video pause popup
+    // Continue watching?” message will surface on your screen if you're watching videos with Autoplay turned on before 30 minutes of uninterrupted watching on mobile, 60 minutes on web, or 180 minutes on TV. If you'd like to continue watching, you can select “Yes”.
+    // let pausePopup = document.querySelector(".ytp-pause-overlay")
 
     // check button is here and click the "Yes" button
-    if (!!pauseConfirmationPopup) {
-        pauseConfirmationPopup.querySelector("button")?.click()
+    // if (!!pausePopup && pausePopup.length > 0) {
+    //     pausePopup.querySelector("button")?.click()
 
-        if (debugMode) console.debug("DEBUGMYYT", "Confirmation button clicked.")
-    }
+    //     if (debugMode) console.debug("DEBUGMYYT", "Confirmation button clicked.")
+    // }
 
     // ads video is playing right now
     let adPlaying = querySelectorOneOf(".ytp-visit-advertiser-link.ytp-ad-component--clickable", ".ytp-ad-visit-advertiser-button")
