@@ -1,0 +1,6 @@
+.vscode
+*.crx
+*.pem
+*.zip
+*_original*
+build/*
